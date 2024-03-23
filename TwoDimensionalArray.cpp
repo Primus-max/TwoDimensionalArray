@@ -9,9 +9,9 @@
 // -целых чисел 7 * 12
 // - символов 12 * 30
 
+#include "array_utils.h"
 #include <iostream>
 #include <windows.h>
-#include "array_utils.h"
 using namespace std;
 
 
@@ -21,46 +21,70 @@ T** CreateTwoDimArray(int rows, int cols);
 template <typename T>
 void PrintTwoDimArray(T** arr, int rows, int cols);
 
-
 template <typename T>
 void FillTwoDimArray(T** arr, int rows, int cols);
 
+template <typename T>
+T** DeleteLastCol(T** arr, int rows, int& cols);
+
+template <typename T>
+void ClearMemory(T **arr, int rows);
+
 int main()
 {
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 
-    const int rowsInt = 7;
-	const int colsInt = 12;
-    int **intArray = CreateTwoDimArray<int>(rowsInt, colsInt); // Создание двумерного массива целых чисел
+	int rowsInt = 7;
+	int colsInt = 12;
+	int** intArray = CreateTwoDimArray<int>(rowsInt, colsInt); // Создание двумерного массива целых чисел
 
-    const int rowsChar = 12;
-	const int colsChar = 30;
-    char **charArray = CreateTwoDimArray<char>(rowsChar, colsChar); // Создание двумерного массива символов
+	int initialRows = 12;
+	int initialCols = 30;
+	int rowsChar = initialRows;
+	int colsChar = initialCols;
+	char** charArray = CreateTwoDimArray<char>(rowsChar, colsChar); // Создание двумерного массива символов
 
-    cout << "-------------------------Заполнение двумерного массива целыми числами-------------------------" << "\n\n";
-    FillTwoDimArray<int>(intArray, rowsInt, colsInt);
+	cout << "-------------------------Заполнение двумерного массива целыми числами-------------------------" << "\n\n";
+	FillTwoDimArray<int>(intArray, rowsInt, colsInt);
 	PrintTwoDimArray<int>(intArray, rowsInt, colsInt);
 
-    cout << "\n\n";
+	cout << "\n\n";
 
-    cout << "-------------------------Заполнение двумерного массива символами-------------------------" << "\n\n";
-    FillTwoDimArray<char>(charArray, rowsChar, colsChar);
-    PrintTwoDimArray<char>(charArray, rowsChar, colsChar);
+	cout << "-------------------------Заполнение двумерного массива символами-------------------------" << "\n\n";
+	FillTwoDimArray<char>(charArray, rowsChar, colsChar);
+	PrintTwoDimArray<char>(charArray, rowsChar, colsChar);
 
-    cout << "\n\n";
+	cout << "\n\n";
+
+	cout << "-------------------------Удаление последней строки из массива-------------------------" << "\n\n";
+	char** charrArrauWidthLastEl = DeleteLastCol(charArray, rowsChar, colsChar);
+	PrintTwoDimArray<char>(charrArrauWidthLastEl, rowsChar, colsChar);
 }
 
 template <typename T>
-void FillTwoDimArray(T** arr, int rows, int cols) {
-    if (arr == nullptr) return;
-    for (int i = 0; i < rows; i++){
-        for (int j = 0; j < cols; j++){
-            if (typeid(T) == typeid(int))
-                arr[i][j] = rand() % 100; // Заполнения интовыми 
-            if(typeid(T) == typeid(char))
-                arr[i][j] = 33 + rand() % 94; // Заполнение печатными символами
-        }
+T** DeleteLastCol(T** arr, int rows, int& cols) {
+	if (arr == nullptr) return nullptr;
 
-    }
+	T** newArray = CreateTwoDimArray<T>(rows, --cols);
+	if (newArray == nullptr) return nullptr;
+
+	for (int i = 0; i < rows; i++){
+		for (int j = 0; j < cols; j++){
+			newArray[i][j] = arr[i][j];
+		}
+	}
+
+	//ClearMemory(arr, rows);
+	return newArray;
+}
+
+
+template <typename T>
+void ClearMemory(T** arr, int rows) {
+	if (arr == nullptr) return;
+	for (int i = 0; i < rows; i++)
+		delete[] arr[i];
+
+	delete[] arr;
 }
