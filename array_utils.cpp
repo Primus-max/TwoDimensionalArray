@@ -139,3 +139,42 @@ T** InsertColByPosition(T** arr, int rows, int& cols, int position) {
     ClearMemory(arr, rows);
     return newArray;
 }
+
+template <typename T>
+T** DeleteRowByPosition(T** arr, int& rows, int cols, int position) {
+    if (arr == nullptr || position < 0 || position >= rows) 
+        return nullptr;
+         
+    T** newArray = CreateTwoDimArray<T>(--rows, cols);
+    if (newArray == nullptr) return nullptr;
+
+    int newArrayRow = 0;
+    for (int i = 0; i < rows + 1; i++) {
+        if (i != position) {
+            for (int j = 0; j < cols; j++) {
+                newArray[newArrayRow][j] = arr[i][j];
+            }
+            newArrayRow++;
+        }
+    }
+
+    ClearMemory(arr, rows + 1);
+    return newArray;
+}
+
+template <typename T>
+T** DeleteFirstCol(T** arr, int rows, int& cols) {
+    if (arr == nullptr || cols <= 0) return nullptr;
+       
+    T** newArray = CreateTwoDimArray<T>(rows, --cols);
+    if (newArray == nullptr) return nullptr;
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            newArray[i][j] = arr[i][j + 1];
+        }
+    }
+
+    ClearMemory(arr, rows);
+    return newArray;
+}

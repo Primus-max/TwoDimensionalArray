@@ -90,4 +90,26 @@ T** InsertRowByPosition(T** arr, int& rows, int cols, int position);
 template<typename T>
 T** InsertColByPosition(T** arr, int rows, int& cols, int position);
 
+/// <summary>
+/// Функция удаления строки по указанной позиции
+/// </summary>
+/// <typeparam name="T">- пользовательский тип</typeparam>
+/// <param name="arr">- исходный массив</param>
+/// <param name="rows">- кол-во строк</param>
+/// <param name="cols">- кол-во столбцов</param>
+/// <param name="position">- позиция для вставки</param>
+/// <returns>указатель на новый массив</returns>
+template <typename T>
+T** DeleteRowByPosition(T** arr, int& rows, int cols, int position);
+
+/// <summary>
+/// Функция удаления столбца в начале массива
+/// </summary>
+/// <typeparam name="T">- пользовательский тип</typeparam>
+/// <param name="arr">- исходный массив</param>
+/// <param name="rows">- кол-во строк</param>
+/// <param name="cols">- кол-во столбцов</param>
+/// <returns>указатель на новый массив</returns>
+template <typename T>
+T** DeleteFirstCol(T** arr, int rows, int& cols);
 #endif 

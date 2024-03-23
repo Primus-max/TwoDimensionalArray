@@ -3,7 +3,7 @@
 // - удаляют столбец в конце массива. [x]
 // - добавляют новую строку в указанную позицию [x]
 // - добавляют новый столбец в указанную позицию [x]
-// - удаляют строку в указанной позиции
+// - удаляют строку в указанной позиции [x]
 // - удаляют столбец в начале массива.
 // Реализовать использование данных функций для массива :
 // -целых чисел 7 * 12
@@ -89,6 +89,30 @@ int main()
 	cout << "-------------------------Вставка нового столбца по указанной позиции в массиве символов-------------------------" << "\n\n";
 	char** charArrayWithNewColByPos = InsertColByPosition(charrArrayWithNewRowByPos, rowsChar, colsChar, 5);
 	PrintTwoDimArray<char>(charArrayWithNewColByPos, rowsChar, colsChar);
+
+	cout << "\n\n";
+
+	cout << "-------------------------Удаление строки по указанной позиции в массиве чисел-------------------------" << "\n\n";
+	int** intArrayRemovedRowByPos = DeleteRowByPosition(intArrayWithNewColByPos, rowsInt, colsInt, 2);
+	PrintTwoDimArray<int>(intArrayRemovedRowByPos, rowsInt, colsInt);
+
+	cout << "\n\n";
+
+	cout << "-------------------------Удаление строки по указанной позиции в массиве символов-------------------------" << "\n\n";
+	char** charArrayRemovedRowByPos = DeleteRowByPosition(charArrayWithNewColByPos, rowsChar, colsChar, 3);
+	PrintTwoDimArray<char>(charArrayRemovedRowByPos, rowsChar, colsChar);
+
+	cout << "\n\n";
+
+	cout << "-------------------------Удаление столбца сначала в массиве чисел-------------------------" << "\n\n";
+	int** intArrayRemovedFirstCol = DeleteFirstCol(intArrayRemovedRowByPos, rowsInt, colsInt);
+	PrintTwoDimArray<int>(intArrayRemovedFirstCol, rowsInt, colsInt);
+
+	cout << "\n\n";
+
+	cout << "-------------------------Удаление столбца сначала в массиве символов-------------------------" << "\n\n";
+	char** charArrayRemovedFirstCol = DeleteFirstCol(charArrayRemovedRowByPos, rowsChar, colsChar);
+	PrintTwoDimArray<char>(charArrayRemovedFirstCol, rowsChar, colsChar);
 }
 
 
