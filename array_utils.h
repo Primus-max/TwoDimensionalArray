@@ -1,19 +1,7 @@
 
 #ifndef ARRAY_UTILS_H
 #define ARRAY_UTILS_H
-
-#include <iostream>
-#include <windows.h>
-using namespace std;
-
-template <typename T>
-void ClearMemory(T** arr, int rows) {
-    if (arr == nullptr) return;
-    for (int i = 0; i < rows; i++)
-        delete[] arr[i];
-
-    delete[] arr;
-}
+#include "array_utils.cpp"
 
 /// <summary>
 /// Функция создания двумерного массива
@@ -23,14 +11,8 @@ void ClearMemory(T** arr, int rows) {
 /// <param name="cols">- кол-во столбцов</param>
 /// <returns>указатель на новый массив</returns>
 template <typename T>
-T** CreateTwoDimArray(int rows, int cols) {
-    T** newArray = new T * [rows];
-    for (int i = 0; i < rows; i++) {
-        newArray[i] = new T[cols];
-    }
+T** CreateTwoDimArray(int rows, int cols);
 
-    return newArray;
-}
 
 /// <summary>
 /// Функция печати массива в консоль
@@ -40,22 +22,7 @@ T** CreateTwoDimArray(int rows, int cols) {
 /// <param name="rows">- кол-во строк</param>
 /// <param name="cols">- кол-во столбцов</param>
 template <typename T>
-void PrintTwoDimArray(T** arr, int rows, int cols) {
-    if (arr == nullptr) {
-        cout << "Не допустимый указатель на массив";
-        return;
-    }
-
-    for (int i = 0; i < rows; i++) {
-        cout << "[ ";
-
-        for (int j = 0; j < cols; j++) {
-            cout << arr[i][j] << " ";
-        }
-
-        cout << " ]" << endl;
-    }
-}
+void PrintTwoDimArray(T** arr, int rows, int cols);
 
 /// <summary>
 /// Функция заполнения массива значениями
@@ -65,42 +32,32 @@ void PrintTwoDimArray(T** arr, int rows, int cols) {
 /// <param name="rows">- кол-во строк</param>
 /// <param name="cols">- кол-во столбцов</param>
 template <typename T>
-void FillTwoDimArray(T** arr, int rows, int cols) {
-    if (arr == nullptr) return;
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            if (typeid(T) == typeid(int))
-                arr[i][j] = rand() % 100; // Заполнения интовыми 
-            if (typeid(T) == typeid(char))
-                arr[i][j] = 33 + rand() % 94; // Заполнение печатными символами
-        }
-
-    }
-}
+void FillTwoDimArray(T** arr, int rows, int cols);
 
 /// <summary>
-/// Функция удаления последнего столбца в массиве
+/// Функция удаления строки в конце массива
 /// </summary>
-/// <typeparam name="T">- пользовательский тие</typeparam>
+/// <typeparam name="T">- пользовательский тип</typeparam>
 /// <param name="arr">- исходный массив</param>
 /// <param name="rows">- кол-во строк</param>
 /// <param name="cols">- кол-во столбцов</param>
 /// <returns>указатель на новый массив</returns>
 template <typename T>
-T** DeleteLastCol(T** arr, int rows, int& cols) {
-    if (arr == nullptr) return nullptr;
+T** DeleteLastRow(T** arr, int& rows, int cols);
 
-    T** newArray = CreateTwoDimArray<T>(rows, --cols);
-    if (newArray == nullptr) return nullptr;
 
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            newArray[i][j] = arr[i][j];
-        }
-    }
+/// <summary>
+/// Функция удаления последнего столбца в массиве
+/// </summary>
+/// <typeparam name="T">- пользовательский тип</typeparam>
+/// <param name="arr">- исходный массив</param>
+/// <param name="rows">- кол-во строк</param>
+/// <param name="cols">- кол-во столбцов</param>
+/// <returns>указатель на новый массив</returns>
+template <typename T>
+T** DeleteLastCol(T** arr, int rows, int& cols);
 
-    ClearMemory(arr, rows);
-    return newArray;
-}
+template <typename T>
+void ClearMemory(T** arr, int rows);
 
 #endif 

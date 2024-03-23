@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="array_utils.cpp" />
     <ClCompile Include="TwoDimensionalArray.cpp" />
   </ItemGroup>
   <ItemGroup>

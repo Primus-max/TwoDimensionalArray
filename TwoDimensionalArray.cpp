@@ -15,22 +15,6 @@
 using namespace std;
 
 
-template <typename T>
-T** CreateTwoDimArray(int rows, int cols);
-
-template <typename T>
-void PrintTwoDimArray(T** arr, int rows, int cols);
-
-template <typename T>
-void FillTwoDimArray(T** arr, int rows, int cols);
-
-template <typename T>
-T** DeleteLastRow(T** arr, int& rows, int cols);
-
-template <typename T>
-T** DeleteLastCol(T** arr, int rows, int& cols);
-
-
 int main()
 {
 	SetConsoleCP(1251);
