@@ -1,6 +1,6 @@
 ﻿// Для динамического двумерного массива написать шаблонные функции которые :
-// - удаляют строку в конце массива
-// - удаляют столбец в конце массива.
+// - удаляют строку в конце массива [x]
+// - удаляют столбец в конце массива. [x]
 // - добавляют новую строку в указанную позицию
 // - добавляют новый столбец в указанную позицию
 // - удаляют строку в указанной позиции
@@ -65,8 +65,19 @@ int main()
 	cout << "\n\n";
 
 	cout << "-------------------------Удаление последнего столбца из массива символов-------------------------" << "\n\n";
-	char** charrArrauWidthLastEl = DeleteLastCol(charArrayWithoutLastRow, rowsChar, colsChar);
-	PrintTwoDimArray<char>(charrArrauWidthLastEl, rowsChar, colsChar);
+	char** charrArrayWithoutLastEl = DeleteLastCol(charArrayWithoutLastRow, rowsChar, colsChar);
+	PrintTwoDimArray<char>(charrArrayWithoutLastEl, rowsChar, colsChar);
+
+
+
+
+	cout << "-------------------------Вставка новой строки по указанной позиции в масcиве чисел-------------------------" << "\n\n";
+	int** intArrayWithNewRowByPos = InsertRowByPosition(intArrayWithLastCol, rowsInt, colsInt, 3);
+	PrintTwoDimArray<int>(intArrayWithNewRowByPos, rowsInt, colsInt);
+
+	cout << "-------------------------Вставка новой строки по указанной позиции в масcиве чисел-------------------------" << "\n\n";
+	char** charrArrayWithNewRowByPos = InsertRowByPosition(charrArrayWithoutLastEl, rowsChar, colsChar, 4);
+	PrintTwoDimArray<char>(charrArrayWithNewRowByPos, rowsChar, colsChar);
 }
 
 
