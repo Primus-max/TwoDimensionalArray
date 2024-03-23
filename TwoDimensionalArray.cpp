@@ -25,24 +25,27 @@ template <typename T>
 void FillTwoDimArray(T** arr, int rows, int cols);
 
 template <typename T>
-T** DeleteLastCol(T** arr, int rows, int& cols);
+T** DeleteLastRow(T** arr, int& rows, int cols);
 
 template <typename T>
-void ClearMemory(T **arr, int rows);
+T** DeleteLastCol(T** arr, int rows, int& cols);
+
 
 int main()
 {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
-	int rowsInt = 7;
-	int colsInt = 12;
+	const int initialIntRows = 7;
+	const int initialIntCols = 12;
+	int rowsInt = initialIntRows;
+	int colsInt = initialIntCols;
 	int** intArray = CreateTwoDimArray<int>(rowsInt, colsInt); // Создание двумерного массива целых чисел
 
-	int initialRows = 12;
-	int initialCols = 30;
-	int rowsChar = initialRows;
-	int colsChar = initialCols;
+	const int initialCharRows = 12;
+	const int initialCharCols = 30;
+	int rowsChar = initialCharRows;
+	int colsChar = initialCharCols;
 	char** charArray = CreateTwoDimArray<char>(rowsChar, colsChar); // Создание двумерного массива символов
 
 	cout << "-------------------------Заполнение двумерного массива целыми числами-------------------------" << "\n\n";
@@ -57,34 +60,15 @@ int main()
 
 	cout << "\n\n";
 
-	cout << "-------------------------Удаление последней строки из массива-------------------------" << "\n\n";
+	cout << "-------------------------Удаление последнего столбца из массива чисел-------------------------" << "\n\n";
+	int** intArrauWidthLastEl = DeleteLastCol(intArray, rowsInt, colsInt);
+	PrintTwoDimArray<int>(intArrauWidthLastEl, rowsInt, colsInt);
+
+	cout << "\n\n";
+
+	cout << "-------------------------Удаление последнего столбца из массива символов-------------------------" << "\n\n";
 	char** charrArrauWidthLastEl = DeleteLastCol(charArray, rowsChar, colsChar);
 	PrintTwoDimArray<char>(charrArrauWidthLastEl, rowsChar, colsChar);
 }
 
-template <typename T>
-T** DeleteLastCol(T** arr, int rows, int& cols) {
-	if (arr == nullptr) return nullptr;
 
-	T** newArray = CreateTwoDimArray<T>(rows, --cols);
-	if (newArray == nullptr) return nullptr;
-
-	for (int i = 0; i < rows; i++){
-		for (int j = 0; j < cols; j++){
-			newArray[i][j] = arr[i][j];
-		}
-	}
-
-	//ClearMemory(arr, rows);
-	return newArray;
-}
-
-
-template <typename T>
-void ClearMemory(T** arr, int rows) {
-	if (arr == nullptr) return;
-	for (int i = 0; i < rows; i++)
-		delete[] arr[i];
-
-	delete[] arr;
-}

@@ -6,6 +6,15 @@
 #include <windows.h>
 using namespace std;
 
+template <typename T>
+void ClearMemory(T** arr, int rows) {
+    if (arr == nullptr) return;
+    for (int i = 0; i < rows; i++)
+        delete[] arr[i];
+
+    delete[] arr;
+}
+
 /// <summary>
 /// Функция создания двумерного массива
 /// </summary>
@@ -51,7 +60,7 @@ void PrintTwoDimArray(T** arr, int rows, int cols) {
 /// <summary>
 /// Функция заполнения массива значениями
 /// </summary>
-/// <typeparam name="T"></typeparam>
+/// <typeparam name="T">- пользовательский тип</typeparam>
 /// <param name="arr">- массив для заполнения</param>
 /// <param name="rows">- кол-во строк</param>
 /// <param name="cols">- кол-во столбцов</param>
@@ -67,6 +76,31 @@ void FillTwoDimArray(T** arr, int rows, int cols) {
         }
 
     }
+}
+
+/// <summary>
+/// Функция удаления последнего столбца в массиве
+/// </summary>
+/// <typeparam name="T">- пользовательский тие</typeparam>
+/// <param name="arr">- исходный массив</param>
+/// <param name="rows">- кол-во строк</param>
+/// <param name="cols">- кол-во столбцов</param>
+/// <returns>указатель на новый массив</returns>
+template <typename T>
+T** DeleteLastCol(T** arr, int rows, int& cols) {
+    if (arr == nullptr) return nullptr;
+
+    T** newArray = CreateTwoDimArray<T>(rows, --cols);
+    if (newArray == nullptr) return nullptr;
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            newArray[i][j] = arr[i][j];
+        }
+    }
+
+    ClearMemory(arr, rows);
+    return newArray;
 }
 
 #endif 
