@@ -4,6 +4,15 @@
 #include "array_utils.cpp"
 
 /// <summary>
+/// Очистка памяти (двумерный массив)
+/// </summary>
+/// <typeparam name="T">- пользователський тип</typeparam>
+/// <param name="arr">- массив для удаления</param>
+/// <param name="rows">- кол-во строк</param>
+template <typename T>
+void ClearMemory(T** arr, int rows);
+
+/// <summary>
 /// Функция создания двумерного массива
 /// </summary>
 /// <typeparam name="T">- пользовательский тип</typeparam>
@@ -65,17 +74,20 @@ T** DeleteLastCol(T** arr, int rows, int& cols);
 /// <param name="rows">- кол-во строк</param>
 /// <param name="cols">- кол-во столбцов</param>
 /// <param name="position">- позиция для вставки</param>
-/// <returns></returns>
+/// <returns>указатель на новый массив</returns>
 template<typename T>
 T** InsertRowByPosition(T** arr, int& rows, int cols, int position);
 
 /// <summary>
-/// Очистка памяти (двумерный массив)
+/// Функция вставки столбца по указанной позиции
 /// </summary>
-/// <typeparam name="T">- пользователський тип</typeparam>
-/// <param name="arr">- массив для удаления</param>
+/// <typeparam name="T">- пользовательский тип</typeparam>
+/// <param name="arr">- исходный массив</param>
 /// <param name="rows">- кол-во строк</param>
-template <typename T>
-void ClearMemory(T** arr, int rows);
+/// <param name="cols">- кол-во столбцов</param>
+/// <param name="position">- позиция для вставки</param>
+/// <returns>указатель на новый массив</returns>
+template<typename T>
+T** InsertColByPosition(T** arr, int rows, int& cols, int position);
 
 #endif 

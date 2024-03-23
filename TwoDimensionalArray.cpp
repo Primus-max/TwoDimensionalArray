@@ -1,8 +1,8 @@
 ﻿// Для динамического двумерного массива написать шаблонные функции которые :
 // - удаляют строку в конце массива [x]
 // - удаляют столбец в конце массива. [x]
-// - добавляют новую строку в указанную позицию
-// - добавляют новый столбец в указанную позицию
+// - добавляют новую строку в указанную позицию [x]
+// - добавляют новый столбец в указанную позицию [x]
 // - удаляют строку в указанной позиции
 // - удаляют столбец в начале массива.
 // Реализовать использование данных функций для массива :
@@ -56,8 +56,6 @@ int main()
 
 	cout << "\n\n";
 
-
-
 	cout << "-------------------------Удаление последнего столбца из массива чисел-------------------------" << "\n\n";
 	int** intArrayWithLastCol = DeleteLastCol(intArrayWithoutLastRow, rowsInt, colsInt);
 	PrintTwoDimArray<int>(intArrayWithLastCol, rowsInt, colsInt);
@@ -68,16 +66,29 @@ int main()
 	char** charrArrayWithoutLastEl = DeleteLastCol(charArrayWithoutLastRow, rowsChar, colsChar);
 	PrintTwoDimArray<char>(charrArrayWithoutLastEl, rowsChar, colsChar);
 
+	cout << "\n\n";
 
-
-
-	cout << "-------------------------Вставка новой строки по указанной позиции в масcиве чисел-------------------------" << "\n\n";
+	cout << "-------------------------Вставка новой строки по указанной позиции в массиве чисел-------------------------" << "\n\n";
 	int** intArrayWithNewRowByPos = InsertRowByPosition(intArrayWithLastCol, rowsInt, colsInt, 3);
 	PrintTwoDimArray<int>(intArrayWithNewRowByPos, rowsInt, colsInt);
 
-	cout << "-------------------------Вставка новой строки по указанной позиции в масcиве чисел-------------------------" << "\n\n";
+	cout << "\n\n";
+
+	cout << "-------------------------Вставка новой строки по указанной позиции в массиве символов-------------------------" << "\n\n";
 	char** charrArrayWithNewRowByPos = InsertRowByPosition(charrArrayWithoutLastEl, rowsChar, colsChar, 4);
 	PrintTwoDimArray<char>(charrArrayWithNewRowByPos, rowsChar, colsChar);
+
+	cout << "\n\n";
+
+	cout << "-------------------------Вставка нового столбца по указанной позиции в массиве чисел-------------------------" << "\n\n";
+	int** intArrayWithNewColByPos = InsertColByPosition(intArrayWithNewRowByPos, rowsInt, colsInt, 1);
+	PrintTwoDimArray<int>(intArrayWithNewColByPos, rowsInt, colsInt);
+
+	cout << "\n\n";
+
+	cout << "-------------------------Вставка нового столбца по указанной позиции в массиве символов-------------------------" << "\n\n";
+	char** charArrayWithNewColByPos = InsertColByPosition(charrArrayWithNewRowByPos, rowsChar, colsChar, 5);
+	PrintTwoDimArray<char>(charArrayWithNewColByPos, rowsChar, colsChar);
 }
 
 

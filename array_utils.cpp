@@ -112,3 +112,30 @@ T** InsertRowByPosition(T** arr, int& rows, int cols, int position) {
     ClearMemory(arr, rows - 1);
     return newArray;
 }
+
+
+template<typename T>
+T** InsertColByPosition(T** arr, int rows, int& cols, int position) {
+    if (arr == nullptr || position < 0 || position > cols)
+        return nullptr;
+
+    T** newArray = CreateTwoDimArray<T>(rows, ++cols);
+    if (newArray == nullptr) return nullptr;
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (j < position) {
+                newArray[i][j] = arr[i][j];
+            }
+            else if (j == position) {
+                newArray[i][j] = 99; // Просто значение
+            }
+            else {
+                newArray[i][j] = arr[i][j - 1];
+            }
+        }
+    }
+    
+    ClearMemory(arr, rows);
+    return newArray;
+}
