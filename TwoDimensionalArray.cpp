@@ -44,14 +44,28 @@ int main()
 
 	cout << "\n\n";
 
+	cout << "-------------------------Удаление последней строки в массиве с числами-------------------------" << "\n\n";
+	int** intArrayWithoutLastRow = DeleteLastRow(intArray, rowsInt, colsInt);
+	PrintTwoDimArray<int>(intArrayWithoutLastRow, rowsInt, colsInt);
+
+	cout << "\n\n";
+
+	cout << "-------------------------Удаление последней строки в массиве с символами-------------------------" << "\n\n";
+	char** charArrayWithoutLastRow = DeleteLastRow(charArray, rowsChar, colsChar);
+	PrintTwoDimArray<char>(charArrayWithoutLastRow, rowsChar, colsChar);
+
+	cout << "\n\n";
+
+
+
 	cout << "-------------------------Удаление последнего столбца из массива чисел-------------------------" << "\n\n";
-	int** intArrauWidthLastEl = DeleteLastCol(intArray, rowsInt, colsInt);
-	PrintTwoDimArray<int>(intArrauWidthLastEl, rowsInt, colsInt);
+	int** intArrayWithLastCol = DeleteLastCol(intArrayWithoutLastRow, rowsInt, colsInt);
+	PrintTwoDimArray<int>(intArrayWithLastCol, rowsInt, colsInt);
 
 	cout << "\n\n";
 
 	cout << "-------------------------Удаление последнего столбца из массива символов-------------------------" << "\n\n";
-	char** charrArrauWidthLastEl = DeleteLastCol(charArray, rowsChar, colsChar);
+	char** charrArrauWidthLastEl = DeleteLastCol(charArrayWithoutLastRow, rowsChar, colsChar);
 	PrintTwoDimArray<char>(charrArrauWidthLastEl, rowsChar, colsChar);
 }
 

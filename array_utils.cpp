@@ -54,8 +54,25 @@ void FillTwoDimArray(T** arr, int rows, int cols) {
 }
 
 template <typename T>
+T** DeleteLastRow(T** arr, int& rows, int cols) {
+    if (arr == nullptr || rows == 0) return nullptr;
+            
+    T** newArray = CreateTwoDimArray<T>(--rows, cols);
+    if (newArray == nullptr) return nullptr;
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            newArray[i][j] = arr[i][j];
+        }
+    }
+
+    ClearMemory(arr, rows + 1);
+    return newArray;
+}
+
+template <typename T>
 T** DeleteLastCol(T** arr, int rows, int& cols) {
-    if (arr == nullptr) return nullptr;
+    if (arr == nullptr || cols == 0) return nullptr;
 
     T** newArray = CreateTwoDimArray<T>(rows, --cols);
     if (newArray == nullptr) return nullptr;
