@@ -129,6 +129,9 @@
   <ItemGroup>
     <ClCompile Include="TwoDimensionalArray.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="array_utils.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
